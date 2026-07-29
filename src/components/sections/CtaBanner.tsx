@@ -2,27 +2,25 @@
 
 import { motion } from 'framer-motion';
 import { IMAGES } from '@/data';
-import ctaBg from '@/assets/ctabg.avif'; 
 
 export function CtaBanner() {
   const marqueeText = 'We Are Faster, Better And Cheaper ';
   const scrollingContent = Array(4).fill(marqueeText).join('  —  ');
 
   return (
-    // ── THE FIX: Added 'bg-[#111]' ──
-    // Solid dark background ensures the sticky Hero section behind it is COMPLETELY blocked out.
     <section className="sticky top-0 h-[calc(100vh+7vw)] w-full overflow-hidden z-0 bg-[#111]">
       
       {/* ── 1. Full Screen Background ── */}
       <div className="absolute inset-0 z-0">
         <img
-          src={ctaBg}
+          src="/assets/ctabg.avif" // ✅ Direct public folder path
           alt="Background"
-          // Image has opacity 70, but because the section has bg-[#111], it blends with dark gray instead of showing the previous section!
           className="h-full w-full object-cover opacity-70" 
         />
         <div className="absolute inset-0 bg-black/40" /> 
       </div>
+      
+
 
       {/* ── Wrapper for Centering Content ── */}
       <div className="relative z-10 h-full w-full flex flex-col items-center justify-center pb-[7vw]">

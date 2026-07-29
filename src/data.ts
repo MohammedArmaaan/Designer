@@ -1,6 +1,6 @@
 export const IMAGES = {
   heroWoman:
-    'public/assets/download.png',
+    '/assets/download.png',
     // 'https://images.pexels.com/photos/29559549/pexels-photo-29559549.jpeg?auto=compress&cs=tinysrgb&w=1400',
   ceoPortrait:
     'https://images.pexels.com/photos/19332286/pexels-photo-19332286.jpeg?auto=compress&cs=tinysrgb&w=1000',
