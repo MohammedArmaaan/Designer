@@ -13,14 +13,12 @@ export function CtaBanner() {
       {/* ── 1. Full Screen Background ── */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/ctabg.avif" // ✅ Direct public folder path
+          src="/assets/ctabg.avif" 
           alt="Background"
           className="h-full w-full object-cover opacity-70" 
         />
         <div className="absolute inset-0 bg-black/40" /> 
       </div>
-      
-
 
       {/* ── Wrapper for Centering Content ── */}
       <div className="relative z-10 h-full w-full flex flex-col items-center justify-center pb-[7vw]">
