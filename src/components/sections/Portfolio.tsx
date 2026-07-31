@@ -84,7 +84,7 @@ function StackedCard({ p, index, totalCards }: StackedCardProps) {
       >
         {/* ── 1. The Main Image Card Container ── */}
         <a
-          href="#contact"
+          href="/contact"
           className="group relative w-full aspect-[1.2/1] sm:aspect-[1.4/1] md:aspect-[1.6/1] overflow-hidden rounded-[2px] bg-[#F7F7F7] block transform-gpu border border-black/[0.04] shadow-[0_-15px_30px_rgba(0,0,0,0.06)]"
         >
           {/* Milky Blurred Background */}
@@ -170,7 +170,7 @@ export function Portfolio() {
             FX-25'
           </h2>
           <a
-            href="#contact"
+            href="/contact"
             className="mt-12 md:mt-16 w-full max-w-[200px] border-b border-ink/20 pb-3 flex justify-between items-center group hover:border-ink transition-colors text-ink"
           >
             <span className="text-[13px] font-semibold tracking-wide">Join Us Now</span>
@@ -193,7 +193,7 @@ export function Portfolio() {
         {/* RIGHT COLUMN: Sticky Floating Pill Button */}
         <div className="hidden lg:flex lg:w-[22%] lg:sticky lg:top-[18vh] justify-end z-30">
           <a
-            href="#contact"
+            href="/portfolio"
             className="inline-flex items-center gap-3 rounded-2xl bg-[#F9F9F9] p-1.5 pr-5 shadow-[0_8px_20px_rgb(0,0,0,0.06)] hover:scale-105 transition-transform border border-ink/5"
           >
             <img 

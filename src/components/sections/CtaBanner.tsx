@@ -76,7 +76,7 @@ export function CtaBanner() {
 
           {/* ── 4. Underlined CTA Link ── */}
           <a
-            href="#contact"
+            href="/contact"
             className="group mt-12 md:mt-16 flex items-center justify-between w-full max-w-[240px] md:max-w-[280px] border-b border-white/30 pb-3 hover:border-white transition-colors"
           >
             <span className="text-white text-[13px] md:text-[14px] font-semibold tracking-wide">

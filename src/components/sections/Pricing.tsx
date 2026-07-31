@@ -148,7 +148,7 @@ export function Pricing() {
 
                   {/* 3. Underlined "Join Us Now" Button */}
                   <a
-                    href="#contact"
+                    href="/contact"
                     className={`group flex justify-between items-center w-full max-w-[240px] border-b pb-4 mb-14 transition-colors ${
                       isDark
                         ? 'border-white/40 hover:border-white text-white'

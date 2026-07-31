@@ -80,7 +80,7 @@ export function Archive() {
           {ARCHIVE_DATA.map((item, index) => (
             <a
               key={index}
-              href="#contact"
+              href="/contact"
               className="group relative flex items-center border-t border-black/15 py-6 md:py-8 transition-colors hover:bg-black/[0.02]"
             >
               {/* Row Grid */}
