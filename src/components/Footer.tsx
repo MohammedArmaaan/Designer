@@ -54,7 +54,7 @@ export function Footer() {
             </h2>
 
             <a
-              href="/contact"
+              href="#contact"
               className="group mt-16 md:mt-24 flex items-center justify-between w-full max-w-[200px] md:max-w-[240px] border-b border-white/20 pb-4 hover:border-white transition-colors"
             >
               <span className="text-[14px] md:text-[15px] font-semibold tracking-wide">
