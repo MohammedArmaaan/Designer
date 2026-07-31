@@ -1,36 +1,38 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { Hero } from '@/components/sections/Hero';
-import { About } from '@/components/sections/About';
-import { Portfolio } from '@/components/sections/Portfolio';
-import { Services } from '@/components/sections/Services';
-import { Pricing } from '@/components/sections/Pricing';
-import { Testimonial } from '@/components/sections/Testimonial';
-import { Archive } from '@/components/sections/Archive';
-import { CtaBanner } from '@/components/sections/CtaBanner';
-import { Stats } from '@/components/sections/Stats';
-import { Articles } from '@/components/sections/Articles';
-import { Faq } from '@/components/sections/Faq';
+
+// Pages
+import Home from '@/pages/Home'; // Move your landing page sections here
+import About from '@/pages/About'; // Your newly created About page
+import PortfolioPage from '@/pages/Portfolio'; // Create this later
+import ContactPage from '@/pages/Contact'; // Create this later
 
 function App() {
   return (
-    <div className="min-h-screen bg-cream text-ink antialiased">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Portfolio />
-        <Services />
-        <Pricing />
-        <Testimonial />
-        <Archive />
-        <CtaBanner />
-        <Stats />
-        {/* <Articles /> */}
-        <Faq />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-cream text-ink antialiased">
+        <Navbar />
+        
+        <main>
+          <Routes>
+            {/* 01. Home Page */}
+            <Route path="/" element={<Home />} />
+            
+            {/* 02. About Page */}
+            <Route path="/about" element={<About />} />
+            
+            {/* 03. Portfolio Page (Uncomment when created) */}
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            
+            {/* 04. Contact Page (Uncomment when created) */}
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

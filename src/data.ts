@@ -101,7 +101,9 @@ export const IMAGES = {
     },
   ],
   faqWoman:
-    'https://images.pexels.com/photos/33798254/pexels-photo-33798254.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=800&auto=format&fit=crop',
+  // faqWoman:
+  //   'https://images.pexels.com/photos/33798254/pexels-photo-33798254.jpeg?auto=compress&cs=tinysrgb&w=900',
 };
 
 export const FAQS = [

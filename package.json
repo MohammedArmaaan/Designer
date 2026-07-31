@@ -17,6 +17,7 @@
     "baseline-browser-mapping": "^2.11.6",
     "caniuse-lite": "^1.0.30001806",
     "framer-motion": "^12.43.0",
+    "lenis": "^1.3.25",
     "lucide-react": "^0.344.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
