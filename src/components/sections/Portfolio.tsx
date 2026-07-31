@@ -2,49 +2,75 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { IMAGES } from '@/data';
+
+// ─── LOCAL IMAGES DATA (Updated as per your VS Code structure) ───────────────
+const IMAGES = {
+  ceoPortrait: "https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png", // Keeping default profile pic
+  portfolio: [
+    {
+      id: "01",
+      title: "Nextlevel Studio",
+      tag: "Client",
+      img: "/portfolio/image1.webp"
+    },
+    {
+      id: "02",
+      title: "Aura Brand Identity",
+      tag: "Personal",
+      img: "/portfolio/image2.webp"
+    },
+    {
+      id: "03",
+      title: "Solaris Digital",
+      tag: "Client",
+      img: "/portfolio/image3.webp"
+    },
+    {
+      id: "04",
+      title: "Fule Farmar-Mothion",
+      tag: "Client",
+      img: "/assets/download.png"
+    }
+  ]
+};
 
 // ─── STACKED CARD SUB-COMPONENT ────────────────────────────────────────────────
 interface StackedCardProps {
   p: any;
   index: number;
+  totalCards: number;
 }
 
-function StackedCard({ p, index }: StackedCardProps) {
+function StackedCard({ p, index, totalCards }: StackedCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Track the scroll relative to this specific card
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    // Start tracking when the card sticks (15% from top).
-    // End tracking far past the viewport (-300%) so the scale continues 
-    // to smoothly shrink as more cards pile on top!
-    offset: ['start 15%', 'start -300%'], 
+    offset: ['start 15%', 'start -200%'], 
   });
 
-  // Buttery soft spring physics for the premium feel
   const smoothProgress = useSpring(scrollYProgress, { 
-    stiffness: 100, // Lower stiffness for a floatier, elegant glide
+    stiffness: 100, 
     damping: 20, 
     restDelta: 0.001 
   });
 
-  // 1. Shrinks continuously down to 0.85 the further back it gets stacked
-  const scale = useTransform(smoothProgress, [0, 1], [1, 0.85]);
+  const targetScale = 1 - (totalCards - 1 - index) * 0.03;
+  const scale = useTransform(smoothProgress, [0, 1], [1, targetScale]);
   
-  // 2. Subtle dimming keeps the colors vibrant but pushes it to the background
   const opacity = useTransform(smoothProgress, [0, 1], [1, 0.65]);
   
-  // 3. Fades the text perfectly as the NEXT card slides over it
-  const textOpacity = useTransform(smoothProgress, [0, 0.1, 0.2], [1, 1, 0]);
+  // FIX: Using raw scrollYProgress instead of smoothProgress for text. 
+  // This removes the spring delay, making the text hide IMMEDIATELY 
+  // as the card starts moving back, preventing any overlaps.
+  const textOpacity = useTransform(scrollYProgress, [0, 0.03], [1, 0]);
 
   return (
     <div
       ref={cardRef}
-      className="sticky w-full mb-[50vh] last:mb-[30vh]"
+      className="sticky w-full mb-[40vh] md:mb-[50vh] [--sticky-top:6rem] md:[--sticky-top:8rem]"
       style={{
-        // 24px increments create that tight, perfect stair-step top edge
-        top: `calc(15vh + ${index * 24}px)`, 
+        top: `calc(var(--sticky-top) + ${index * 28}px)`, 
       }}
     >
       <motion.div
@@ -53,14 +79,15 @@ function StackedCard({ p, index }: StackedCardProps) {
           opacity,
           transformOrigin: 'top center',
         }}
-        className="flex flex-col transform-gpu"
+        // Added bg-white here so the card acts as a solid block hiding anything behind it
+        className="flex flex-col transform-gpu bg-white pb-2"
       >
         {/* ── 1. The Main Image Card Container ── */}
         <a
           href="#contact"
-          className="group relative w-full aspect-[1.4/1] md:aspect-[1.6/1] overflow-hidden rounded-[24px] bg-[#F7F7F7] block transform-gpu border border-black/[0.04] shadow-[0_-15px_30px_rgba(0,0,0,0.06)]"
+          className="group relative w-full aspect-[1.2/1] sm:aspect-[1.4/1] md:aspect-[1.6/1] overflow-hidden rounded-[2px] bg-[#F7F7F7] block transform-gpu border border-black/[0.04] shadow-[0_-15px_30px_rgba(0,0,0,0.06)]"
         >
-          {/* Milky Blurred Background - zooms slowly on hover */}
+          {/* Milky Blurred Background */}
           <img
             src={p.img}
             alt=""
@@ -68,9 +95,9 @@ function StackedCard({ p, index }: StackedCardProps) {
             aria-hidden="true"
           />
 
-          {/* Sharp Center Image - zooms and lifts on hover */}
+          {/* Sharp Center Image */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[55%] aspect-[16/10] overflow-hidden rounded-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] bg-white/5">
+            <div className="w-[80%] md:w-[70%] aspect-[16/10] overflow-hidden rounded-[2px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] bg-white/5">
               <img
                 src={p.img}
                 alt={p.title}
@@ -81,25 +108,25 @@ function StackedCard({ p, index }: StackedCardProps) {
           </div>
         </a>
 
-        {/* ── 2. Bottom Info Row (Animated to fade out) ── */}
+        {/* ── 2. Bottom Info Row ── */}
         <motion.div 
           style={{ opacity: textOpacity }}
-          className="flex items-start justify-between text-ink mt-5 px-2"
+          className="flex items-start justify-between text-ink mt-4 md:mt-5 px-1 md:px-2"
         >
-          <span className="text-[11px] font-semibold tracking-wide w-16 text-ink">
+          <span className="text-[10px] md:text-[11px] font-semibold tracking-wide w-12 md:w-16 text-ink">
             ({p.id})
           </span>
           
           <div className="flex-1 text-center">
-            <h3 className="font-display text-[15.5px] font-semibold leading-none text-ink">
+            <h3 className="font-display text-[14px] md:text-[15.5px] font-semibold leading-none text-ink">
               {p.title}
             </h3>
-            <p className="mt-1.5 text-[11px] tracking-wide text-ink/50">
+            <p className="mt-1.5 text-[10px] md:text-[11px] tracking-wide text-ink/50">
               {p.tag}
             </p>
           </div>
           
-          <span className="text-[11px] font-semibold tracking-wide w-16 text-right text-ink/80">
+          <span className="text-[10px] md:text-[11px] font-semibold tracking-wide w-12 md:w-16 text-right text-ink/80">
             © 2025
           </span>
         </motion.div>
@@ -110,6 +137,8 @@ function StackedCard({ p, index }: StackedCardProps) {
 
 // ─── MAIN PORTFOLIO SECTION ────────────────────────────────────────────────────
 export function Portfolio() {
+  const totalCards = IMAGES.portfolio.length;
+
   return (
     <section 
       id="portfolio" 
@@ -156,6 +185,7 @@ export function Portfolio() {
               key={p.id} 
               p={p} 
               index={i} 
+              totalCards={totalCards} 
             />
           ))}
         </div>

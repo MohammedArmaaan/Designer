@@ -24,7 +24,7 @@ const ARCHIVE_DATA = [
     year: '2025',
     title: 'Zaine',
     thumbnails: [
-      IMAGES.portfolio?.[4]?.img || 'https://images.unsplash.com/photo-1600607688969-a5bfcd64bd40?q=80&w=200&auto=format&fit=crop'
+      IMAGES.portfolio?.[4]?.img || 'https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=200&auto=format&fit=crop'
     ]
   },
   {
